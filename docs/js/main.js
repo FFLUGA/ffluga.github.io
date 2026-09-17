@@ -132,4 +132,46 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+
+  // Instrumentation photo lightbox (index.html)
+  var instrumentThumbs = document.querySelectorAll(".instrument-thumb");
+  var lightbox = document.getElementById("instrumentLightbox");
+
+  if (instrumentThumbs.length && lightbox) {
+    var lightboxImg = lightbox.querySelector(".lightbox-img");
+    var lightboxCaption = lightbox.querySelector(".lightbox-caption");
+    var closeBtn = lightbox.querySelector(".lightbox-close");
+    var lastFocused = null;
+
+    function openLightbox(thumb) {
+      lastFocused = thumb;
+      lightboxImg.src = thumb.getAttribute("data-full");
+      lightboxImg.alt = thumb.querySelector("img").alt;
+      lightboxCaption.textContent = thumb.getAttribute("data-caption") || "";
+      lightbox.hidden = false;
+      closeBtn.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.hidden = true;
+      lightboxImg.src = "";
+      if (lastFocused) lastFocused.focus();
+    }
+
+    instrumentThumbs.forEach(function (thumb) {
+      thumb.addEventListener("click", function () {
+        openLightbox(thumb);
+      });
+    });
+
+    closeBtn.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
+    });
+  }
 });
