@@ -615,7 +615,8 @@ section.alt {
   font-variant-numeric: tabular-nums;
 }
 
-/* Category tags — aligned with the lab's 10 core research areas */
+/* Category tags — aligned with the lab's 10 core research areas, plus a legacy
+   "Foundational Physics & Instrumentation" bucket for pre-2013 papers */
 :root {
   --cat-imaging: #1f8fb0;
   --cat-protein: #178a82;
@@ -627,6 +628,7 @@ section.alt {
   --cat-environmental: #a98f2b;
   --cat-contaminants: #2f8f7a;
   --cat-outreach: #3b6e8f;
+  --cat-physics: #6b6f76;
 }
 
 .pub-item h3 {
@@ -680,6 +682,7 @@ section.alt {
 .tag-environmental { --tag-color: var(--cat-environmental); }
 .tag-contaminants { --tag-color: var(--cat-contaminants); }
 .tag-outreach { --tag-color: var(--cat-outreach); }
+.tag-physics { --tag-color: var(--cat-physics); }
 
 .badge {
   display: inline-flex;
