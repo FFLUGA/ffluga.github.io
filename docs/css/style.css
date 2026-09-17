@@ -259,6 +259,59 @@ section.alt {
   background: #fff;
 }
 
+/* ===== Home — lab impact content ===== */
+.impact-list {
+  margin: 0 0 20px;
+  padding-left: 20px;
+}
+
+.impact-list li {
+  margin-bottom: 6px;
+}
+
+.impact-note {
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+.stat-callout {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-top: 8px;
+}
+
+section.alt .stat-callout {
+  background: #fff;
+}
+
+.instrument-figure {
+  max-width: 760px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.instrument-figure:last-child {
+  margin-bottom: 0;
+}
+
+.instrument-figure img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.instrument-figure figcaption {
+  margin-top: 10px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
 /* ===== People ===== */
 .person-card {
   text-align: center;
@@ -546,6 +599,110 @@ section.alt {
   .carousel-btn {
     width: 40px;
     font-size: 1.3rem;
+  }
+}
+
+/* Content/info carousel variant (home page lab-impact slides) */
+.info-carousel {
+  max-width: 820px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+}
+
+.info-carousel .carousel-viewport {
+  height: 480px;
+}
+
+.info-carousel .carousel-track {
+  height: 100%;
+}
+
+.info-slide {
+  padding: 36px 60px;
+  overflow-y: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info-slide.info-slide--start {
+  justify-content: flex-start;
+}
+
+.info-slide h3 {
+  margin: 0 0 20px;
+  padding: 12px 20px;
+  background: var(--color-primary);
+  color: #fff;
+  text-align: center;
+  border-radius: var(--radius);
+  font-size: 1.15rem;
+  align-self: center;
+  width: 100%;
+}
+
+.info-slide .instrument-figure {
+  margin-bottom: 0;
+  max-width: 100%;
+}
+
+.info-slide:has(.instrument-figure) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.info-slide .instrument-figure img {
+  max-height: 340px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.info-slide .stat-callout {
+  margin-top: 20px;
+}
+
+.info-carousel .carousel-btn {
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+}
+
+.info-carousel .carousel-btn:hover {
+  background: var(--color-bg-alt);
+}
+
+.info-carousel .carousel-prev {
+  left: 10px;
+}
+
+.info-carousel .carousel-next {
+  right: 10px;
+}
+
+@media (max-width: 640px) {
+  .info-slide {
+    padding: 28px 44px;
+  }
+
+  .info-carousel .carousel-viewport {
+    height: 520px;
+  }
+
+  .info-slide .instrument-figure img {
+    max-height: 380px;
   }
 }
 
