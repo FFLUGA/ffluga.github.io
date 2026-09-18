@@ -1,0 +1,57 @@
+name: Check for new publications
+
+on:
+  schedule:
+    - cron: '0 13 * * 1' # every Monday at 13:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check ORCID for new publications
+        id: check
+        run: python .github/scripts/check_new_publications.py
+
+      - name: Open pull request
+        if: steps.check.outputs.has_new == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Add ${{ steps.check.outputs.count }} new publication(s) from ORCID"
+          branch: auto/new-publications
+          delete-branch: true
+          title: "New publication(s) on ORCID — needs categorization"
+          labels: publications, needs-review
+          body: |
+            ORCID lists **${{ steps.check.outputs.count }}** publication(s) not yet on the site:
+
+            ${{ steps.check.outputs.titles }}
+
+            Each new entry was inserted at the top of `docs/publications.html`, marked with a
+            `TODO` comment. Before merging:
+
+            1. Set the correct `data-cats` value(s) on each new `<li class="pub-item">` — see the
+               research-area ids in the filter bar at the top of the same file (`imaging`,
+               `protein`, `epigenetics`, `metabolomics`, `lipidomics`, `drug`, `trace`,
+               `environmental`, `contaminants`, `outreach`, `physics`).
+            2. Add the matching `<span class="tag tag-...">` inside each entry's `.pub-tags` div.
+            3. Bump that category's count in the filter bar (the "All" count was already
+               incremented automatically).
+            4. Spot-check the auto-filled authors/venue against the actual paper — the author list
+               and venue details come from Crossref and can be incomplete or missing for very new
+               or non-journal records (preprints, conference proceedings).
+
+            This PR was opened automatically by `.github/workflows/check-new-publications.yml`,
+            which polls [ORCID](https://orcid.org/0000-0002-1283-4390) weekly.

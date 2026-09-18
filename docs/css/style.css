@@ -239,6 +239,32 @@ section.alt {
   margin-bottom: 0;
 }
 
+/* ===== Resources ===== */
+.resource-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.resource-list li {
+  border-top: 1px solid var(--color-border);
+}
+
+.resource-list li:first-child {
+  border-top: none;
+}
+
+.resource-list a {
+  display: block;
+  padding: 9px 0;
+  color: var(--color-text);
+}
+
+.resource-list a:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
 /* Research areas overview figure */
 .research-areas-heading {
   margin-top: 40px;
