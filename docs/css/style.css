@@ -144,6 +144,15 @@ h1, h2, h3, h4 {
 .hero-inner {
   max-width: var(--max-width);
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 0;
 }
 
 .hero h1 {
@@ -160,6 +169,29 @@ h1, h2, h3, h4 {
 
 .hero .btn {
   margin-top: 12px;
+}
+
+.hero-logo {
+  flex-shrink: 0;
+  width: 200px;
+  height: auto;
+}
+
+@media (max-width: 800px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-logo {
+    order: -1;
+    width: 150px;
+  }
+
+  .hero p {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* ===== Buttons ===== */
